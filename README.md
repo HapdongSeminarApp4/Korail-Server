@@ -134,8 +134,8 @@ feature 번호는 issue 번호에 맞게 생성 / name에는 자기 이름
 | :---: | :-----: |
 | main | 초기 세팅 존재 |
 | develop | 구현 완료 브랜치 |
-| hyosik | 효식 개인 브랜치 |
 | sohyeon | 소현 개인 브랜치 |
+| hanbit | 한빛 개인 브랜치 |
 | name_#issue | 이슈 별 기능 구현 브랜치 |
 
 ### 📌 Commit Convention
