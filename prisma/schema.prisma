@@ -8,8 +8,33 @@ datasource db {
 }
 
 model User {
-  id       Int     @id(map: "user_pk") @unique(map: "user_id_uindex") @default(autoincrement())
-  userName String
-  age      Int?
-  email    String? @db.VarChar(400)
+  user_id     Int           @id @unique @default(autoincrement())
+  age         Int?
+  email       String?       @db.VarChar(40)
+  password    String?       @db.VarChar(40)
+  gender      String?
+  birth       DateTime?     @db.Date
+  userName    String?
+  user_ticket user_ticket[]
+}
+
+model ticket {
+  ticket_id   Int           @id @unique @default(autoincrement())
+  from        String?
+  to          String?
+  date        DateTime?     @db.Date
+  seat_num    Int?
+  trail       String?
+  user_ticket user_ticket[]
+}
+
+model user_ticket {
+  user_ticket_id Int     @id @unique @default(autoincrement())
+  user_id        Int?
+  ticket_id      Int?
+  seat           String? @db.VarChar(40)
+  cabin          Int?
+  trail_num      String? @db.VarChar(40)
+  ticket         ticket? @relation(fields: [ticket_id], references: [ticket_id], onDelete: NoAction, onUpdate: NoAction, map: "user_ticket_id_fk")
+  User           User?   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "user_ticket_user_user_id_fk")
 }

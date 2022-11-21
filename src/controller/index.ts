@@ -1,1 +1,3 @@
-export { default as userController } from "./userController";
+import ticketController from "./ticketController";
+
+export { ticketController };
