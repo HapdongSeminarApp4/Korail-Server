@@ -9,6 +9,11 @@ import ticketService from "../service/ticketService";
  */
 const createTicket = async (req: Request, res: Response) => {
   const ticketRequestDto: TicketRequestDto = req.body;
+
+  if (!ticketRequestDto.userId || !ticketRequestDto.ticketId || !ticketRequestDto.seat || !ticketRequestDto.cabin) {
+    return res.status(400).json({ status: 400, message: "잘못된 입력값" });
+  }
+
   const data = await ticketService.createTicket(ticketRequestDto);
 
   if (!data) {
