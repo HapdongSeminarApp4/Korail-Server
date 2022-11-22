@@ -23,6 +23,8 @@ model User {
   age         Int?
   email       String        @unique(map: "user_email_uindex") @db.VarChar(50)
   password    String        @db.VarChar(100)
+  gender      String        @db.VarChar(10)
+  birth       DateTime      @db.Date
   User_ticket User_ticket[]
 }
 

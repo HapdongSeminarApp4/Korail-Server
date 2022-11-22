@@ -23,6 +23,29 @@ const createTicket = async (req: Request, res: Response) => {
   return res.status(200).json({ status: 200, message: "예매 티켓 저장 성공", data });
 };
 
+
+/**
+ * @route GET /api/ticket/user/:userId
+ * @desc 예매 승차권 조회
+ * @access Public
+ */
+const getUserTicket = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  if (!userId) {
+    return res.status(400).json({ status: 400, message: "잘못된 입력값" });
+  }
+
+  const data = await ticketService.getUserTicket(+userId);
+
+  if (!data || data === 404) {
+    return res.status(404).json({ status: 404, message: "티켓 조회 실패" });
+  }
+
+  return res.status(200).json({ status: 200, message: "티켓 조회 성공", data });
+
+}
+
 export default {
-  createTicket
+  createTicket,
+  getUserTicket
 }
