@@ -7,6 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Ticket {
+  tikcet_id   Int           @id(map: "ticket_pk") @unique(map: "ticket_tikcet_id_uindex") @default(autoincrement())
+  from        String        @db.VarChar(50)
+  to          String        @db.VarChar(50)
+  date        DateTime      @db.Date
+  seat_num    Int
+  trail       String        @db.VarChar(50)
+  User_ticket User_ticket[]
+}
+
 model User {
   user_id     Int           @id(map: "user_pk") @unique(map: "user_user_id_uindex") @default(autoincrement())
   name        String        @db.VarChar(20)
@@ -18,23 +28,13 @@ model User {
   User_ticket User_ticket[]
 }
 
-model Ticket {
-  tikcet_id   Int           @id(map: "ticket_pk") @unique(map: "ticket_tikcet_id_uindex") @default(autoincrement())
-  from        String        @db.VarChar(50)
-  to          String        @db.VarChar(50)
-  date        DateTime      @db.Date
-  seat_num    Int
-  trail       String        @db.VarChar(50)
-  User_ticket User_ticket[]
-}
-
 model User_ticket {
   user_ticket_id Int    @id(map: "user_ticket_pk") @unique(map: "user_ticket_user_ticket_id_uindex") @default(autoincrement())
   user_id        Int
   ticket_id      Int
   seat           String @db.VarChar(20)
   cabin          Int
-  ticket_num     String @unique(map: "user_ticket_ticket_num_uindex") @db.VarChar(20)
+  ticket_num     String @db.VarChar(20)
   Ticket         Ticket @relation(fields: [ticket_id], references: [tikcet_id], onDelete: Cascade, map: "user_ticket_ticket_tikcet_id_fk")
   User           User   @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "user_ticket_user_user_id_fk")
 }
