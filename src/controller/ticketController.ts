@@ -6,7 +6,7 @@ const getTicket = async (req: Request, res: Response) => {
   const data = await ticketService.getTicket();
   return res
     .status(200)
-    .json({ status: 200, message: "메인 페이지 조회 성공- 전체 티켓", data });
+    .json({ status: 200, message: "메인 페이지 조회 성공", data });
 };
 
 const ticketController = {
