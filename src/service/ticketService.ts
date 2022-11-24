@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 // header에 jwt 토큰을 담는다면 여러 사용자가 있는 실제 서비스를 감안한 코드 가능.
 // 티켓 전체 조회
-const getAllTicket = async () => {
+const getTicket = async () => {
   const data = await prisma.ticket.findMany();
   return data;
 };
@@ -39,7 +39,7 @@ const getTicketById = async (userId: number, ticketId: number) => {
 };
 
 const ticketService = {
-  getAllTicket,
+  getTicket,
   getTicketById,
 };
 

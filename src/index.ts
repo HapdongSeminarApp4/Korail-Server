@@ -6,7 +6,12 @@ const PORT = 3000; // 사용할 port를 3000번으로 설정
 
 app.use(express.json()); // express 에서 request body를 json 으로 받아오겠다.
 
-app.use("/", router); // 기본 라우터, 여기에 중첩되기 시작
+app.use("/api", router); // 기본 라우터, 여기에 중첩되기 시작
+
+// HTTP method - GET
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  res.send("서버가 정상적으로 실행중입니다!");
+});
 
 app.listen(PORT, () => {
   console.log(`
