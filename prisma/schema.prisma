@@ -34,7 +34,7 @@ model User_ticket {
   ticket_id      Int
   seat           String @db.VarChar(20)
   cabin          Int
-  ticket_num     String @unique(map: "user_ticket_ticket_num_uindex") @db.VarChar(20)
+  ticket_num     String @db.VarChar(20)
   Ticket         Ticket @relation(fields: [ticket_id], references: [tikcet_id], onDelete: Cascade, map: "user_ticket_ticket_tikcet_id_fk")
   User           User   @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "user_ticket_user_user_id_fk")
 }
